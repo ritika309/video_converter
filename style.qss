@@ -1,0 +1,35 @@
+QLabel
+{
+        font-size: 11pt;
+} 
+QPushButton
+{
+        color: white;
+        font-size: 10pt; 
+        width:180px;
+        height:28px;
+        font-weight: bold;
+
+}
+QPushButton:disabled
+{
+    color:rgba(244, 239, 239, 0.554);
+}
+
+QProgressBar {
+        height: 30px;
+}    
+QComboBox::drop-down {
+
+        width: 15px;
+    
+        border-left-width: 1px;
+        border-left-color: darkgray;
+        border-left-style: solid; /* just a single line */
+        border-top-right-radius: 3px; /* same radius as the QComboBox */
+        border-bottom-right-radius: 3px;
+    }
+QLineEdit
+{
+    font-size: 10pt; 
+}
