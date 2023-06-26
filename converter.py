@@ -76,7 +76,7 @@ def convert_video(input_video, output_video=None, new_fps=None, new_bitrate=None
 
    command += f' {output_video}'
 
-   process =subprocess.call(command,shell = True)
+   process =subprocess.Popen(command,shell = True, stderr=subprocess.PIPE, universal_newlines=True)
 
    duration = None
 
