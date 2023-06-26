@@ -367,11 +367,12 @@ class MainWindow(QMainWindow):
 
     def createFileList(self, files: list): 
         for i in files:
+            
             video_name = os.path.basename(i)
             metadata = video_metadata(i)
 
             listWidgetItem = QListWidgetItem("\n {} \nVideo Metadata: {}".format(video_name , metadata) )
-            listWidgetItem.setData(Qt.UserRole, i)
+            listWidgetItem.setData(Qt.UserRole,Path(i))
             listWidgetItem.setIcon(self.uncheck)
             self.files_list.addItem(listWidgetItem)
 
@@ -399,6 +400,7 @@ class MainWindow(QMainWindow):
             filter="Video Files (*.mp4 *.mov *.avi *.mkv *.mpeg *.webm *.ogg *.flv)",
             options=option,
         )
+        
         self.createFileList(files[0])  
     
     def getSaveLocation(self):

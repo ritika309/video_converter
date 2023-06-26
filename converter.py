@@ -46,12 +46,12 @@ class Resolutions:
     UHD_8K = '7680x4320'
 
 def convert_video(input_video, output_video=None, new_fps=None, new_bitrate=None, new_resolution=None, new_codec=None, new_container=None, folder=None, callback=None):
-   input =os.path.normpath(input_video.replace(" ", ""))
-   video_name = os.path.splitext(os.path.basename(input))[0]
    
+   video_name = os.path.splitext(os.path.basename(input_video))[0]
+   valid_name=video_name.replace(" ", "_")
    if not output_video:
       if new_container is not None:
-         output_video = video_name + "_output." + new_container
+         output_video = valid_name + "_output." + new_container
       else:
          output_video = "output." + input_video.split('.')[-1]
    
@@ -76,7 +76,7 @@ def convert_video(input_video, output_video=None, new_fps=None, new_bitrate=None
 
    command += f' {output_video}'
 
-   process =subprocess.Popen(command,shell = True, stderr=subprocess.PIPE, universal_newlines=True)
+   process =subprocess.call(command,shell = True)
 
    duration = None
 
@@ -103,6 +103,6 @@ def convert_video(input_video, output_video=None, new_fps=None, new_bitrate=None
       if rc == 0:
          print( "Success.")
       else:
+         print(output)
          print(error)
 
-   

@@ -19,17 +19,16 @@ QPushButton:disabled
 QProgressBar {
         height: 30px;
 }    
-QComboBox::drop-down {
 
-        width: 15px;
-    
-        border-left-width: 1px;
-        border-left-color: darkgray;
-        border-left-style: solid; /* just a single line */
-        border-top-right-radius: 3px; /* same radius as the QComboBox */
-        border-bottom-right-radius: 3px;
-    }
 QLineEdit
 {
     font-size: 10pt; 
+}
+QComboBox {
+        height:30px;
+        border: 1px solid #e1e0e0;
+        border-radius: 5px;
+}
+QMainWindow{
+        background-color:#fff4f4f4;
 }
