@@ -101,8 +101,7 @@ def convert_video(input_video, output_video=None, new_fps=None, new_bitrate=None
    rc = process.returncode
    if rc is not None:  
       if rc == 0:
-         print( "Success.")
+         return True
       else:
-         print(output)
-         print(error)
+         return False
 

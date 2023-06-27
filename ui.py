@@ -13,6 +13,7 @@ from PySide2.QtWidgets import (
     QComboBox,
     QProgressBar,
     QFrame,
+    QMessageBox,
     QSpacerItem,
     QSizePolicy,
     QListWidget,
@@ -420,15 +421,6 @@ class MainWindow(QMainWindow):
             time.sleep(0.01)
             self.progress_bar.setValue(i+1)
 
-        
-        self.progress_label.setText("Conversion started")
-
-        if s == 100:
-            selected_items=self.files_list.selectedItems()
-            total_files = len( selected_items)
-            for item in range(total_files):
-                self.progress_label.setText("{} out of {} files converted succussfully".format(item+1,total_files))
-                  
 
     def convert(self):
         formats = self.format_combobox.currentText()
@@ -438,10 +430,12 @@ class MainWindow(QMainWindow):
         resolution = self.resolution_combobox.currentText()
 
         selected_items = self.files_list.selectedItems()
+        total_files = len( selected_items)
+        count = 1
         for items in selected_items:
             convert_this= items.data(Qt.UserRole)
             
-            convert_video(
+            converted = convert_video(
             Path('"{}"'.format(convert_this)),
             new_fps=int(fps),
             new_bitrate=getattr(Bitrates,bitrate),
@@ -452,6 +446,13 @@ class MainWindow(QMainWindow):
             callback=self.progress
 
         )
+            if converted is True:
+                self.progress_label.setText("{} out of {} files converted succussfully".format(count, total_files))
+                count =count +1
+            else:
+                QMessageBox.warning(None, "Failed Conversion", f"Conversion for file {items} failed.")
+                continue
+
    
 # ------------------------------------------
 
